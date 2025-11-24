@@ -14,17 +14,16 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 
+theme_set(theme_bw(base_size=12))
+
 # ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ 
 # ♡               data files              ♡ 
 # ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ 
 
-strep_data <- read_csv("/stor/work/Marcotte/project/zoya/oligos/figure_generation/strep.csv")
 oligo_1_data <- read_csv("/stor/work/Marcotte/project/zoya/oligos/figure_generation/oligo_1.csv")
 oligo_2_data <- read_csv("/stor/work/Marcotte/project/zoya/oligos/figure_generation/oligo_2.csv")
 oligo_3_data <- read_csv("/stor/work/Marcotte/project/zoya/oligos/figure_generation/oligo_3.csv")
 oligo_4_data <- read_csv("/stor/work/Marcotte/project/zoya/oligos/figure_generation/oligo_4.csv")
-Chitin_Only_data <- read_csv("/stor/work/Marcotte/project/zoya/oligos/figure_generation/chitin.csv")
-glass161_data <- read_csv("/stor/work/Marcotte/project/zoya/oligos/figure_generation/glass.csv")
 k_space_file = '/stor/work/Marcotte/project/rmcox/oligos/results/oligo_kmer_space_sampled.csv'
 oligo1 <- read_csv("/stor/work/Ellington/sanchita/oligos/results/pca/oligo_1_data.csv")
 oligo2 <- read_csv("/stor/work/Ellington/sanchita/oligos/results/pca/oligo_2_data.csv")
@@ -104,7 +103,7 @@ p3 <- ComplexUpset::upset(
 p3
 
 # ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡  
-# ♡  Figure 6 : Log2fc of kmer enrichment   ♡ 
+# Figure 3C : Log2fc of kmer enrichment -----
 # ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡
 
 oligo_1_data_clean <- oligo_1_data %>%

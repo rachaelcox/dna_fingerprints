@@ -11,8 +11,8 @@ library(stringr)
 library(grid)
 
 # provide file paths
-results_path  <- "/results"
-output_folder <- "/consensus/GC_content"
+results_path  <- "results"
+output_folder <- "consensus/GC_content"
 
 # does the directory exist
 if (!dir.exists(output_folder)) {

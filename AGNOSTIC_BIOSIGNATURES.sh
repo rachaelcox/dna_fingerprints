@@ -70,4 +70,8 @@ echo ">>> Step 7: Running BLAST..."
 echo ">>> Step 8: Final Clustering Analysis..."
 ./scripts/optional_space_aptamers_08.sh
 
-echo ">>> Pipeline Complete!"
+ # 11. GC content analysis
+ echo ">>> Step 9: GC content Analysis..."
+ Rscript ./scripts/GC_content_calculation_kmers.R
+ 
+ echo ">>> Pipeline Complete!"

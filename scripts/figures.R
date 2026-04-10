@@ -370,3 +370,42 @@ NMDS_stressplot <- p1 + p2
 w = 10; h = 5
 NMDS_stressplot %>% ggsave("figures/images/NMDS_stressplot.png", ., device = "png", 
                            width = w, height = h, units = "in")
+
+# Figure 8b PERMANOVA
+#______________________
+
+# Prepare the meta data by splittign on substrate and wash
+df_meta <- df %>%
+  select(experiment) %>%
+  separate(experiment, into = c("substrate", "wash"), sep = "_", remove = FALSE)
+
+# run permanova by substrate and shuffle data for Null hypothesis 999 times
+permanova_substrate <- adonis2(df.dist ~ substrate, data = df_meta, permutations = 999)
+
+# creates the dispersion objects to determine within group dispersion and calculate the ANOVA of the group dispersion
+disp_substrate <- betadisper(df.dist, df_meta$substrate)
+disp_anova <- anova(disp_substrate)
+
+# calculate ANOSIM in the same way - to tell use within group 
+anosim_substrate <- anosim(df.dist, grouping = df_meta$substrate, permutations = 999)
+
+print("PERMANOVA by Substrate:")
+print(permanova_substrate)
+print("--- BETA DISPERSION RESULTS ---")
+print(disp_anova)
+print("ANOSIM by Substrate:")
+summary(anosim_substrate)
+
+
+capture.output({
+
+  cat("===== PERMANOVA by Substrate =====\n")
+  print(permanova_substrate)
+
+  cat("\n===== BETA DISPERSION RESULTS =====\n")
+  print(disp_anova)
+
+  cat("\n===== ANOSIM by Substrate =====\n")
+  print(summary(anosim_substrate))
+
+}, file = "figures/combined/NMDS_statistics.txt")
